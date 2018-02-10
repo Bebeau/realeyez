@@ -1,0 +1,113 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+a:focus, button:focus {
+  outline: none; }
+
+button {
+  border-radius: 0;
+  border: 1px solid #ebebeb;
+  line-height: 40px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: black;
+  color: white; }
+  button:hover {
+    cursor: pointer; }
+
+#product {
+  width: 1080px;
+  margin: 100px auto; }
+  #product .logo {
+    width: 200px;
+    height: 83px;
+    margin: 0 auto 100px;
+    background: url("../../assets/img/logo.svg") no-repeat scroll center/contain; }
+  #product img {
+    margin: 0 0 -5px; }
+    #product img:hover {
+      cursor: pointer; }
+
+.half {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+  box-sizing: border-box; }
+  .half:last-child {
+    padding: 100px 100px 100px 0; }
+  .half h3 {
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0; }
+    .half h3.price {
+      font-weight: bold;
+      text-align: center; }
+  .half #desc {
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 28px; }
+  .half #size {
+    text-align: center;
+    margin-top: 15px; }
+    .half #size button {
+      display: inline-block;
+      color: black;
+      width: 52px;
+      height: 52px;
+      background: none;
+      box-shadow: 0 0 0;
+      border: 1px solid #cccccc;
+      margin: 5px; }
+      .half #size button:first-child {
+        margin-left: 0; }
+      .half #size button:last-child {
+        margin-right: 0; }
+      .half #size button:hover {
+        cursor: pointer; }
+      .half #size button.selected {
+        background: black;
+        color: white; }
+  .half .Dropdown-root {
+    line-height: 40px;
+    margin: 10px auto 0;
+    width: 300px;
+    position: relative; }
+    .half .Dropdown-root .Dropdown-control {
+      border: 1px solid #cccccc;
+      padding: 0 15px;
+      box-sizing: border-box;
+      position: relative; }
+      .half .Dropdown-root .Dropdown-control .Dropdown-arrow {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        background: black;
+        width: 20px;
+        height: 20px; }
+    .half .Dropdown-root .Dropdown-menu {
+      border-top: 1px sold #cccccc;
+      position: absolute;
+      background: #ebebeb;
+      width: 100%; }
+      .half .Dropdown-root .Dropdown-menu .Dropdown-option {
+        padding: 0 15px;
+        box-sizing: border-box; }
+        .half .Dropdown-root .Dropdown-menu .Dropdown-option:hover {
+          background: #dedede; }
+    .half .Dropdown-root:hover {
+      cursor: pointer; }
+  .half button {
+    display: block;
+    width: 300px;
+    margin: 15px auto; }
+    .half button.closeModal {
+      width: auto;
+      margin: 0; }
+
+.closeModal {
+  position: absolute;
+  top: 0;
+  right: 0; }
