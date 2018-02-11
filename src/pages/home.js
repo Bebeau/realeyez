@@ -3,17 +3,21 @@ import Dropdown from 'react-dropdown';
 import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
 import StripeCheckout from 'react-stripe-checkout';
 
-import './assets/sass/style.css';
+import Helmet from 'react-helmet';
+import Header from './layout/header';
+import Footer from './layout/footer';
 
-import combatWhite from './assets/img/products/combatWhite.jpg';
-import lookWhite from './assets/img/products/lookWhite.jpg';
-import politeJacket from './assets/img/products/politeJacket.jpg';
-import madeGrey from './assets/img/products/madeGrey.jpg';
-import snapback from './assets/img/products/snapback.jpg';
+import '../assets/sass/style.css';
 
-import dtomBlack from './assets/img/products/dtomBlack.jpg';
-import dtomGreen from './assets/img/products/dtomGreen.jpg';
-import dtomRed from './assets/img/products/dtomRed.jpg';
+import combatWhite from '../assets/img/products/combatWhite.jpg';
+import lookWhite from '../assets/img/products/lookWhite.jpg';
+import politeJacket from '../assets/img/products/politeJacket.jpg';
+import madeGrey from '../assets/img/products/madeGrey.jpg';
+import snapback from '../assets/img/products/snapback.jpg';
+
+import dtomBlack from '../assets/img/products/dtomBlack.jpg';
+import dtomGreen from '../assets/img/products/dtomGreen.jpg';
+import dtomRed from '../assets/img/products/dtomRed.jpg';
 
 const products = [
   {
@@ -152,7 +156,11 @@ class MyModal extends Component{
 };
  
 class Checkout extends React.Component {
-  onToken = (token) => {
+  onToken = (token, args) => {
+    fetch('/charge', {
+      method: 'POST',
+      body: JSON.stringify(token)
+    });
   }
   render() {
     const { amount } = this.props;
@@ -161,7 +169,7 @@ class Checkout extends React.Component {
         token={this.onToken}
         stripeKey="pk_test_ByoJucUkS7YYjs6OMlbtlA7x"
         image="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/3d1c6a78-e5ce-463b-88cb-a06040f17916.jpg"
-        bitcoin="1FXf9ufYhY9jPpzLK7uaRo3o7AQDUw1QuN"
+        bitcoin={true}
         name="Realeyez Apparel"
         description="Make 'em realize."
         currency="USD"
@@ -175,24 +183,110 @@ class Checkout extends React.Component {
 };
 
 class App extends Component{
-    render(){
-       return (
-          <div id="product">
-            <div className="logo" />
-            {products.map((product, index) => (
-              <Product
-                key={index}
-                img={product.img}
-                title={product.title}
-                desc={product.desc}
-                price={product.price}
-                size={product.size}
-                color={product.color}
-              />
-            ))}
-          </div>
-       );
-    }
+  render(){
+     return (
+        <div id="product">
+          <Helmet
+            title="Realeyez Apparel"
+            meta={[
+              {
+                name: 'description',
+                content:
+                  'I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all.'
+              },
+              {
+                name: 'keywords',
+                content: 'streetwear fashion clothing apparel style culture hiphop'
+              }
+            ]}
+            >
+            <meta
+              name="description"
+              content="I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all."
+            />
+            
+            <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png" />
+            <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+            <link rel="mask-icon" href="../assets/img/favicon/safari-pinned-tab.svg" color="#1a1d40" />
+            <link rel="shortcut icon" href="../assets/img/favicon/favicon.ico" />
+            <meta name="msapplication-TileColor" content="#da532c" />
+            <meta name="msapplication-config" content="../assets/img/favicon/browserconfig.xml" />
+            <meta name="theme-color" content="#ffffff" />
+
+            <link rel="canonical" href="http://realeyezapparel.com/" />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Realeyez Apparel" />
+            <meta
+              property="og:description"
+              content="I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all."
+            />
+            <meta property="og:url" content="http://realeyezapparel.com/" />
+            <meta property="og:site_name" content="Realeyez Apparel" />
+            <meta property="fb:app_id" content="305877862171" />
+            <meta
+              property="og:image"
+              content=""
+            />
+            <meta
+              property="og:image:secure_url"
+              content=""
+            />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta
+              name="twitter:description"
+              content="I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all."
+            />
+            <meta name="twitter:title" content="Realeyez Apparel" />
+            <meta name="twitter:site" content="@realeyezapparel" />
+            <meta
+              name="twitter:image"
+              content=""
+            />
+            
+            <script id="stripe-js" src="https://js.stripe.com/v3/" async></script>
+
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4879883-8"></script>
+
+            <script>{`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-4879883-2');
+            `}</script>
+
+            <div id="fb-root" />
+            <script>{`!function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1964686717087734');
+              fbq('track', 'PageView');`}
+            </script>
+
+          </Helmet>
+          <Header />
+          {products.map((product, index) => (
+            <Product
+              key={index}
+              img={product.img}
+              title={product.title}
+              desc={product.desc}
+              price={product.price}
+              size={product.size}
+              color={product.color}
+            />
+          ))}
+          <Footer />
+        </div>
+     );
+  }
 }
 
 export default App;

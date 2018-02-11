@@ -21,15 +21,17 @@ button {
 		cursor: pointer;
 	}
 }
-#product {
-	width: 1080px;
-	margin: 100px auto;
+header {
 	.logo {
 		width: 200px;
 		height: 83px;
 		margin: 0 auto 100px;
 		background: url('../../assets/img/logo.svg') no-repeat scroll center / contain;
 	}
+}
+#product {
+	width: 1080px;
+	margin: 100px auto;
 	img {
 		margin: 0 0 -5px;
 		&:hover {
@@ -136,4 +138,21 @@ button {
 	position: absolute;
 	top: 0;
 	right: 0;
+}
+
+footer {
+	text-align: center;
+	margin-top: 75px;
+	a {
+		display: inline-block;
+		width: 35px;
+		height: 35px;
+		margin: 0 15px;
+		&.facebook {
+			background: url('../../assets/img/facebook.svg') no-repeat scroll center / contain;
+		}
+		&.instagram {
+			background: url('../../assets/img/instagram.svg') no-repeat scroll center / contain;
+		}
+	}
 }

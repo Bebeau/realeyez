@@ -18,14 +18,15 @@ button {
   button:hover {
     cursor: pointer; }
 
+header .logo {
+  width: 200px;
+  height: 83px;
+  margin: 0 auto 100px;
+  background: url("../../assets/img/logo.svg") no-repeat scroll center/contain; }
+
 #product {
   width: 1080px;
   margin: 100px auto; }
-  #product .logo {
-    width: 200px;
-    height: 83px;
-    margin: 0 auto 100px;
-    background: url("../../assets/img/logo.svg") no-repeat scroll center/contain; }
   #product img {
     margin: 0 0 -5px; }
     #product img:hover {
@@ -111,3 +112,16 @@ button {
   position: absolute;
   top: 0;
   right: 0; }
+
+footer {
+  text-align: center;
+  margin-top: 75px; }
+  footer a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 15px; }
+    footer a.facebook {
+      background: url("../../assets/img/facebook.svg") no-repeat scroll center/contain; }
+    footer a.instagram {
+      background: url("../../assets/img/instagram.svg") no-repeat scroll center/contain; }
