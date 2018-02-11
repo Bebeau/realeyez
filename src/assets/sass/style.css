@@ -19,18 +19,16 @@ button {
     cursor: pointer; }
 
 header .logo {
-  width: 200px;
-  height: 83px;
-  margin: 0 auto 100px;
-  background: url("../../assets/img/logo.svg") no-repeat scroll center/contain; }
+  width: 225px;
+  height: 200px;
+  margin: 0 auto 75px;
+  background: url("../../assets/img/peace.png") no-repeat scroll right/contain; }
 
 #product {
   width: 1080px;
   margin: 100px auto; }
   #product img {
     margin: 0 0 -5px; }
-    #product img:hover {
-      cursor: pointer; }
 
 .half {
   display: inline-block;
@@ -118,10 +116,35 @@ footer {
   margin-top: 75px; }
   footer a {
     display: inline-block;
-    width: 35px;
-    height: 35px;
-    margin: 0 15px; }
-    footer a.facebook {
-      background: url("../../assets/img/facebook.svg") no-repeat scroll center/contain; }
-    footer a.instagram {
-      background: url("../../assets/img/instagram.svg") no-repeat scroll center/contain; }
+    margin: 0 15px;
+    opacity: 0.8; }
+    footer a i {
+      display: block;
+      width: 25px;
+      height: 25px; }
+      footer a i.facebook {
+        width: 24px;
+        height: 24px;
+        background: url("../../assets/img/facebook.svg") no-repeat scroll center/contain; }
+      footer a i.instagram {
+        background: url("../../assets/img/instagram.svg") no-repeat scroll center/contain; }
+
+@media (max-width: 1080px) {
+  #product {
+    width: 100%; }
+    #product img {
+      width: 50%;
+      height: auto; } }
+
+@media (max-width: 767px) {
+  header .logo {
+    width: 125px;
+    height: 100px;
+    margin: 0 auto 50px; }
+  #product {
+    margin: 50px auto; }
+    #product img {
+      width: 100%;
+      height: auto; }
+  footer {
+    margin-top: 50px; } }

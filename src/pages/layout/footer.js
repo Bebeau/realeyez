@@ -4,8 +4,8 @@ class Footer extends Component{
     render(){
        return (
           <footer>
-            <a className="facebook" href="https://facebook.com/realeyezapparel" target="_BLANK"></a>
-            <a className="instagram" href="https://instagram.com/realeyezapparel" target="_BLANK"></a>
+            <a href="https://facebook.com/realeyezapparel" target="_BLANK" rel="noopener noreferrer"><i className="facebook" /></a>
+            <a href="https://instagram.com/realeyezapparel" target="_BLANK" rel="noopener noreferrer"><i className="instagram" /></a>
           </footer>
        );
     }

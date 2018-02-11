@@ -23,10 +23,10 @@ button {
 }
 header {
 	.logo {
-		width: 200px;
-		height: 83px;
-		margin: 0 auto 100px;
-		background: url('../../assets/img/logo.svg') no-repeat scroll center / contain;
+		width: 225px;
+		height: 200px;
+		margin: 0 auto 75px;
+		background: url('../../assets/img/peace.png') no-repeat scroll right / contain;
 	}
 }
 #product {
@@ -34,9 +34,6 @@ header {
 	margin: 100px auto;
 	img {
 		margin: 0 0 -5px;
-		&:hover {
-			cursor: pointer;
-		}
 	}
 }
 .half {
@@ -145,14 +142,49 @@ footer {
 	margin-top: 75px;
 	a {
 		display: inline-block;
-		width: 35px;
-		height: 35px;
 		margin: 0 15px;
-		&.facebook {
-			background: url('../../assets/img/facebook.svg') no-repeat scroll center / contain;
+		opacity: 0.8;
+		i {
+			display: block;
+			width: 25px;
+			height: 25px;
+			&.facebook {
+				width: 24px;
+				height: 24px;
+				background: url('../../assets/img/facebook.svg') no-repeat scroll center / contain;
+			}
+			&.instagram {
+				background: url('../../assets/img/instagram.svg') no-repeat scroll center / contain;
+			}
 		}
-		&.instagram {
-			background: url('../../assets/img/instagram.svg') no-repeat scroll center / contain;
+	}
+}
+
+@media(max-width:1080px) {
+	#product {
+		width: 100%;
+		img {
+			width: 50%;
+			height: auto;
 		}
+	}
+}
+@media(max-width:767px) {
+	header {
+		.logo {
+			width: 125px;
+			height: 100px;
+			margin: 0 auto 50px;
+		}
+	}
+	#product {
+		margin: 50px auto;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	footer {
+		margin-top: 50px;
 	}
 }
