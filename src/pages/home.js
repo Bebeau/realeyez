@@ -310,7 +310,7 @@ class App extends Component{
               content="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/caaa7847-0ef7-49ca-9266-170fa3b28cb7.png"
             />
             
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4879883-8"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4879883-2"></script>
 
             <script>{`
               window.dataLayer = window.dataLayer || [];
