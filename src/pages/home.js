@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 // import Dropdown from 'react-dropdown';
-// import StripeCheckout from 'react-stripe-checkout';
+import StripeCheckout from 'react-stripe-checkout';
 
 import Helmet from 'react-helmet';
 import Header from './layout/header';
@@ -215,36 +215,51 @@ class Product extends React.Component {
 //   }
 // };
  
-// class Checkout extends React.Component {
-//   onToken = (token) => {
-//     fetch('/save-stripe-token', {
-//       method: 'POST',
-//       body: JSON.stringify(token),
-//     }).then(response => {
-//       response.json().then(data => {
-//         alert(`We are in business, ${data.email}`);
-//       });
-//     });
-//   }
-//   render() {
-//     const { amount } = this.props;
-//     return (
-//       <StripeCheckout
-//         token={this.onToken}
-//         stripeKey="pk_test_ByoJucUkS7YYjs6OMlbtlA7x"
-//         image="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/81cbeb07-c1ab-4f6a-8fe9-13f4de7ebb4f.jpg"
-//         bitcoin={true}
-//         name="Realeyez Apparel"
-//         description="Make 'em realize."
-//         currency="USD"
-//         amount={this.props.amount}
-//         shippingAddress={true}
-//       >
-//       <button>Buy Now</button>
-//       </StripeCheckout>
-//     )
-//   }
-// };
+class Checkout extends React.Component {
+  onToken = (token) => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    });
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '5'
+    };
+  }
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+  }
+  render() {
+    const { amount } = this.props;
+    return (
+      <div id="donate">
+        <div id="quote">
+          <h1>Look, I've put so much into creating this shit, but I need your help to make it.</h1>
+          <h2>Donate any amount to my pursuit of printing this product line, and I'll send you one of our snapbacks.</h2>
+          <input type="number" min="5" name="quantity" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="$5" />
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey="pk_test_ByoJucUkS7YYjs6OMlbtlA7x"
+            image="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/81cbeb07-c1ab-4f6a-8fe9-13f4de7ebb4f.jpg"
+            bitcoin={true}
+            name="Realeyez Apparel"
+            description="Make 'em realize."
+            currency="USD"
+            amount={this.state.inputValue*100}
+            shippingAddress={true}
+          >
+            <button>Donate</button>
+          </StripeCheckout>
+          <div className="hatCount">39 hats left</div>
+        </div>
+      </div>
+    )
+  }
+};
 
 class App extends Component{
   render(){
@@ -334,6 +349,7 @@ class App extends Component{
           </Helmet>
           <div id="fb-root" />
           <Header />
+          <Checkout />
           {products.map((product, index) => (
             <Product
               key={index}
