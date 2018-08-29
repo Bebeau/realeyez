@@ -26,13 +26,14 @@ header .logo {
   background: url("../../assets/img/peace.png") no-repeat scroll right/contain; }
 
 #quote {
+  box-sizing: border-box;
   width: 400px;
   margin: 0 auto 100px;
   text-align: center; }
   #quote h1, #quote h2 {
     font-weight: normal; }
   #quote h1 {
-    font-size: 36pt;
+    font-size: 32pt;
     color: #333; }
   #quote h2 {
     margin: 35px 0 50px;
@@ -46,7 +47,8 @@ header .logo {
     box-sizing: border-box;
     font-size: 14pt;
     width: 100px;
-    vertical-align: top; }
+    vertical-align: top;
+    border: 1px solid #ebebeb; }
     #quote input:focus {
       outline: none; }
   #quote .hatCount {
@@ -58,7 +60,8 @@ header .logo {
   width: 1080px;
   margin: 100px auto; }
   #product img {
-    margin: 0 0 -5px; }
+    margin: 0 0 -5px;
+    box-sizing: border-box; }
 
 .half {
   display: inline-block;
@@ -178,3 +181,13 @@ footer {
       height: auto; }
   footer {
     margin-top: 50px; } }
+
+@media (max-width: 414px) {
+  #quote {
+    width: 300px;
+    padding: 0; }
+    #quote h1 {
+      font-size: 24pt; }
+    #quote h2 {
+      font-size: 16pt;
+      line-height: 21pt; } }
