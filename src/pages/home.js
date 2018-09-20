@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 // import Dropdown from 'react-dropdown';
 import StripeCheckout from 'react-stripe-checkout';
 
-import Helmet from 'react-helmet';
 import Header from './layout/header';
 import Footer from './layout/footer';
 
@@ -21,6 +20,13 @@ import backstabber from '../assets/img/products/backstabber.jpg';
 import dogtags from '../assets/img/products/dogtags.jpg';
 import politeSweats from '../assets/img/products/politeSweats.jpg';
 import target from '../assets/img/products/target.jpg';
+
+import dtom1Art from '../assets/img/prints/dtom1.jpg';
+import lookArt from '../assets/img/prints/look.jpg';
+import targetArt from '../assets/img/prints/target.jpg';
+import peaceArt from '../assets/img/prints/peace.jpg';
+import dtom2Art from '../assets/img/prints/dtom2.jpg';
+import preyArt from '../assets/img/prints/prey.jpg';
 
 const products = [
   {
@@ -101,6 +107,27 @@ const products = [
   }
 ];
 
+const prints = [
+  {
+    art: [dtom1Art]
+  },
+  {
+    art: [targetArt]
+  },
+  {
+    art: [lookArt]
+  },
+  {
+    art: [peaceArt]
+  },
+  {
+    art: [dtom2Art]
+  },
+  {
+    art: [preyArt]
+  }
+];
+
 // class Button extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -148,6 +175,14 @@ class Product extends React.Component {
   render() {
     return (
       <img src={this.props.img[0]} alt="" />
+    )
+  }
+};
+
+class Print extends React.Component {
+  render() {
+    return (
+      <img className="print" src={this.props.art[0]} alt="" />
     )
   }
 };
@@ -239,8 +274,8 @@ class Checkout extends React.Component {
       <div id="donate">
         <div id="quote">
           <h1>Look, I've put so much into creating this shit, but I need your help to make it.</h1>
-          <h2>Donate any amount to my pursuit of printing this product line, and I'll send you one of our snapbacks.</h2>
-          <input type="number" min="5" name="quantity" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="$5" />
+          <h2>Donate to the pursuit of printing this product line, and I'll send you one.</h2>
+          <span className="sign">$</span><input type="number" min="5" name="quantity" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="$5" />
           <StripeCheckout
             token={this.onToken}
             stripeKey="pk_test_ByoJucUkS7YYjs6OMlbtlA7x"
@@ -254,7 +289,6 @@ class Checkout extends React.Component {
           >
             <button>Donate</button>
           </StripeCheckout>
-          <div className="hatCount">39 hats left</div>
         </div>
       </div>
     )
@@ -264,103 +298,29 @@ class Checkout extends React.Component {
 class App extends Component{
   render(){
      return (
-        <div id="product">
-          <Helmet
-            title="Realeyez Apparel"
-            meta={[
-              {
-                name: 'description',
-                content:
-                  'I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all.'
-              },
-              {
-                name: 'keywords',
-                content: 'streetwear fashion clothing apparel style culture hiphop'
-              }
-            ]}
-            >
-            <meta
-              name="description"
-              content="I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all."
-            />
-            
-            <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png" />
-            <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
-            <link rel="mask-icon" href="../assets/img/favicon/safari-pinned-tab.svg" color="#1a1d40" />
-            <link rel="shortcut icon" href="../assets/img/favicon/favicon.ico" />
-            <meta name="msapplication-TileColor" content="#da532c" />
-            <meta name="msapplication-config" content="../assets/img/favicon/browserconfig.xml" />
-            <meta name="theme-color" content="#ffffff" />
-
-            <link rel="canonical" href="http://realeyezapparel.com/" />
-            <meta property="og:locale" content="en_US" />
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="Realeyez Apparel" />
-            <meta
-              property="og:description"
-              content="I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all."
-            />
-            <meta property="og:url" content="http://realeyezapparel.com/" />
-            <meta property="og:site_name" content="Realeyez Apparel" />
-            <meta property="fb:app_id" content="305877862171" />
-            <meta
-              property="og:image"
-              content="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/6e234fa8-7f91-4891-8d6e-5561fbdd32d0.png"
-            />
-            <meta
-              property="og:image:secure_url"
-              content="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/6e234fa8-7f91-4891-8d6e-5561fbdd32d0.png"
-            />
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta
-              name="twitter:description"
-              content="I pledge allegiance to this lifestyle, and who is real for which they stand, one culture under none, unstoppable, with real eyes to realize it all."
-            />
-            <meta name="twitter:title" content="Realeyez Apparel" />
-            <meta name="twitter:site" content="@realeyezapparel" />
-            <meta
-              name="twitter:image"
-              content="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/caaa7847-0ef7-49ca-9266-170fa3b28cb7.png"
-            />
-            
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4879883-2"></script>
-
-            <script>{`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'UA-4879883-2');
-            `}</script>
-
-            <script>{`!function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1964686717087734');
-              fbq('track', 'PageView');`}
-            </script>
-
-          </Helmet>
-          <div id="fb-root" />
+        <div>
           <Header />
-          <Checkout />
-          {products.map((product, index) => (
-            <Product
-              key={index}
-              img={product.img}
-              title={product.title}
-              desc={product.desc}
-              price={product.price}
-              size={product.size}
-              color={product.color}
-            />
-          ))}
+
+          <section id="product">
+            {products.map((product, index) => (
+              <Product
+                key={index}
+                img={product.img}
+                title={product.title}
+                desc={product.desc}
+                price={product.price}
+                size={product.size}
+                color={product.color}
+              />
+            ))}
+            {prints.map((print, index) => (
+              <Print
+                key={index}
+                art={print.art}
+              />
+            ))}
+          </section>
+
           <Footer />
         </div>
      );

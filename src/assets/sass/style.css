@@ -22,8 +22,20 @@ button {
 header .logo {
   width: 225px;
   height: 200px;
-  margin: 0 auto 75px;
+  margin: 75px auto;
   background: url("../../assets/img/peace.png") no-repeat scroll right/contain; }
+
+input {
+  line-height: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  font-size: 14pt;
+  vertical-align: top;
+  border: 1px solid #ebebeb; }
+  input:focus {
+    outline: none; }
 
 #quote {
   box-sizing: border-box;
@@ -39,18 +51,12 @@ header .logo {
     margin: 35px 0 50px;
     line-height: 32px;
     color: #666; }
-  #quote input {
+  #quote .sign {
+    vertical-align: middle;
+    display: inline-block;
     line-height: 40px;
-    height: 40px;
-    margin: 0;
-    padding: 0 15px;
-    box-sizing: border-box;
-    font-size: 14pt;
-    width: 100px;
-    vertical-align: top;
-    border: 1px solid #ebebeb; }
-    #quote input:focus {
-      outline: none; }
+    color: #00cd00;
+    padding-right: 5px; }
   #quote .hatCount {
     margin-top: 25px;
     color: #999;
@@ -58,98 +64,29 @@ header .logo {
 
 #product {
   width: 1080px;
-  margin: 100px auto; }
+  margin: 100px auto 50px; }
   #product img {
+    max-width: 100%;
+    height: auto;
     margin: 0 0 -5px;
     box-sizing: border-box; }
-
-.half {
-  display: inline-block;
-  width: 50%;
-  vertical-align: middle;
-  box-sizing: border-box; }
-  .half:last-child {
-    padding: 100px 100px 100px 0; }
-  .half h3 {
-    font-size: 36px;
-    font-weight: normal;
-    margin: 0; }
-    .half h3.price {
-      font-weight: bold;
-      text-align: center; }
-  .half #desc {
-    margin-bottom: 25px;
-    font-size: 18px;
-    line-height: 28px; }
-  .half #size {
-    text-align: center;
-    margin-top: 15px; }
-    .half #size button {
-      display: inline-block;
-      color: black;
-      width: 52px;
-      height: 52px;
-      background: none;
-      box-shadow: 0 0 0;
-      border: 1px solid #cccccc;
-      margin: 5px; }
-      .half #size button:first-child {
-        margin-left: 0; }
-      .half #size button:last-child {
-        margin-right: 0; }
-      .half #size button:hover {
-        cursor: pointer; }
-      .half #size button.selected {
-        background: black;
-        color: white; }
-  .half .Dropdown-root {
-    line-height: 40px;
-    margin: 10px auto 0;
-    width: 300px;
-    position: relative; }
-    .half .Dropdown-root .Dropdown-control {
-      border: 1px solid #cccccc;
-      padding: 0 15px;
-      box-sizing: border-box;
-      position: relative; }
-      .half .Dropdown-root .Dropdown-control .Dropdown-arrow {
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        background: black;
-        width: 20px;
-        height: 20px; }
-    .half .Dropdown-root .Dropdown-menu {
-      border-top: 1px sold #cccccc;
-      position: absolute;
-      background: #ebebeb;
-      width: 100%; }
-      .half .Dropdown-root .Dropdown-menu .Dropdown-option {
-        padding: 0 15px;
-        box-sizing: border-box; }
-        .half .Dropdown-root .Dropdown-menu .Dropdown-option:hover {
-          background: #dedede; }
-    .half .Dropdown-root:hover {
-      cursor: pointer; }
-  .half button {
-    display: block;
-    width: 300px;
-    margin: 15px auto; }
-    .half button.closeModal {
-      width: auto;
-      margin: 0; }
-
-.closeModal {
-  position: absolute;
-  top: 0;
-  right: 0; }
+    #product img.print {
+      width: 33.3333333%;
+      box-sizing: border-box; }
 
 footer {
   text-align: center;
-  margin-top: 75px; }
+  margin-top: 0; }
+  footer h3 {
+    font-size: 26pt;
+    width: 800px;
+    margin: 0 auto 50px;
+    line-height: 46px;
+    font-weight: lighter;
+    color: #999; }
   footer a {
     display: inline-block;
-    margin: 0 15px;
+    margin: 50px 15px 0;
     opacity: 0.8; }
     footer a i {
       display: block;
@@ -161,6 +98,21 @@ footer {
         background: url("../../assets/img/facebook.svg") no-repeat scroll center/contain; }
       footer a i.instagram {
         background: url("../../assets/img/instagram.svg") no-repeat scroll center/contain; }
+  footer p {
+    margin: 50px 0;
+    font-size: 8pt;
+    letter-spacing: 0.5px;
+    color: #444;
+    vertical-align: middle; }
+    footer p a {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 0 3px; }
+      footer p a img {
+        width: 35px;
+        height: auto; }
+  footer .msg-alert p {
+    margin: 10px 0; }
 
 @media (max-width: 1080px) {
   #product {
@@ -169,16 +121,26 @@ footer {
       width: 50%;
       height: auto; } }
 
+@media (max-width: 800px) {
+  footer h3 {
+    width: auto;
+    box-sizing: border-box;
+    padding: 0 25px;
+    font-size: 21pt;
+    line-height: 30pt; } }
+
 @media (max-width: 767px) {
   header .logo {
     width: 125px;
     height: 100px;
-    margin: 0 auto 50px; }
+    margin: 50px auto; }
   #product {
     margin: 50px auto; }
     #product img {
       width: 100%;
       height: auto; }
+      #product img.print {
+        width: 50%; }
   footer {
     margin-top: 50px; } }
 

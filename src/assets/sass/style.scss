@@ -26,8 +26,21 @@ header {
 	.logo {
 		width: 225px;
 		height: 200px;
-		margin: 0 auto 75px;
+		margin: 75px auto;
 		background: url('../../assets/img/peace.png') no-repeat scroll right / contain;
+	}
+}
+input {
+	line-height: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0 15px;
+	box-sizing: border-box;
+	font-size: 14pt;
+	vertical-align: top;
+	border: 1px solid #ebebeb;
+	&:focus {
+		outline: none;
 	}
 }
 #quote {
@@ -47,19 +60,12 @@ header {
 		line-height: 32px;
 		color: #666;
 	}
-	input {
+	.sign {
+		vertical-align: middle;
+		display: inline-block;
 		line-height: 40px;
-		height: 40px;
-		margin: 0;
-		padding: 0 15px;
-		box-sizing: border-box;
-		font-size: 14pt;
-		width: 100px;
-		vertical-align: top;
-		border: 1px solid #ebebeb;
-		&:focus {
-			outline: none;
-		}
+		color: lighten(green, 15%);
+		padding-right: 5px;
 	}
 	.hatCount {
 		margin-top: 25px;
@@ -69,119 +75,133 @@ header {
 }
 #product {
 	width: 1080px;
-	margin: 100px auto;
+	margin: 100px auto 50px;
 	img {
+		max-width: 100%;
+		height: auto;
 		margin: 0 0 -5px;
 		box-sizing: border-box;
-	}
-}
-.half {
-	display: inline-block;
-	width: 50%;
-	vertical-align: middle;
-	box-sizing: border-box;
-	&:last-child {
-		padding: 100px 100px 100px 0;
-	}
-	h3 {
-		font-size: 36px;
-		font-weight: normal;
-		margin: 0;
-		&.price {
-			font-weight: bold;
-			text-align: center;
-		}
-	}
-	#desc {
-		margin-bottom: 25px;
-		font-size: 18px;
-		line-height: 28px;
-	}
-	#size {
-		text-align: center;
-		margin-top: 15px;
-		button {
-			display: inline-block;
-			color: black;
-			width: 52px;
-			height: 52px;
-			background: none;
-			box-shadow: 0 0 0;
-			border: 1px solid #cccccc;
-			margin: 5px;
-			&:first-child {
-				margin-left: 0;
-			}
-			&:last-child {
-				margin-right: 0;
-			}
-			&:hover {
-				cursor: pointer;
-			}
-			&.selected {
-				background: black;
-				color: white;
-			}
-		}
-	}
-	.Dropdown-root {
-		line-height: 40px;
-		margin: 10px auto 0;
-		width: 300px;
-		position: relative;
-		.Dropdown-control {
-			border: 1px solid #cccccc;
-			padding: 0 15px;
+		&.print {
+			width: 33.3333333%;
 			box-sizing: border-box;
-			position: relative;
-			.Dropdown-arrow {
-				position: absolute; 
-				right: 15px;
-				top: 10px;
-				background: black;
-				width: 20px;
-				height: 20px;
-			}
-		}
-		.Dropdown-menu {
-			border-top: 1px sold #cccccc;
-			position: absolute;
-			background: #ebebeb;
-			width: 100%;
-			.Dropdown-option {
-				padding: 0 15px;
-				box-sizing: border-box;
-				&:hover {
-					background: darken(#ebebeb, 5%);
-				}
-			}
-		}
-		&:hover {
-			cursor: pointer;
-		}
-	}
-	button {
-		display: block;
-		width: 300px;
-		margin: 15px auto;
-		&.closeModal {
-			width: auto;
-			margin: 0;
 		}
 	}
 }
-.closeModal {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
+// .half {
+// 	display: inline-block;
+// 	width: 50%;
+// 	vertical-align: middle;
+// 	box-sizing: border-box;
+// 	&:last-child {
+// 		padding: 100px 100px 100px 0;
+// 	}
+// 	h3 {
+// 		font-size: 36px;
+// 		font-weight: normal;
+// 		margin: 0;
+// 		&.price {
+// 			font-weight: bold;
+// 			text-align: center;
+// 		}
+// 	}
+// 	#desc {
+// 		margin-bottom: 25px;
+// 		font-size: 18px;
+// 		line-height: 28px;
+// 	}
+// 	#size {
+// 		text-align: center;
+// 		margin-top: 15px;
+// 		button {
+// 			display: inline-block;
+// 			color: black;
+// 			width: 52px;
+// 			height: 52px;
+// 			background: none;
+// 			box-shadow: 0 0 0;
+// 			border: 1px solid #cccccc;
+// 			margin: 5px;
+// 			&:first-child {
+// 				margin-left: 0;
+// 			}
+// 			&:last-child {
+// 				margin-right: 0;
+// 			}
+// 			&:hover {
+// 				cursor: pointer;
+// 			}
+// 			&.selected {
+// 				background: black;
+// 				color: white;
+// 			}
+// 		}
+// 	}
+// 	.Dropdown-root {
+// 		line-height: 40px;
+// 		margin: 10px auto 0;
+// 		width: 300px;
+// 		position: relative;
+// 		.Dropdown-control {
+// 			border: 1px solid #cccccc;
+// 			padding: 0 15px;
+// 			box-sizing: border-box;
+// 			position: relative;
+// 			.Dropdown-arrow {
+// 				position: absolute; 
+// 				right: 15px;
+// 				top: 10px;
+// 				background: black;
+// 				width: 20px;
+// 				height: 20px;
+// 			}
+// 		}
+// 		.Dropdown-menu {
+// 			border-top: 1px sold #cccccc;
+// 			position: absolute;
+// 			background: #ebebeb;
+// 			width: 100%;
+// 			.Dropdown-option {
+// 				padding: 0 15px;
+// 				box-sizing: border-box;
+// 				&:hover {
+// 					background: darken(#ebebeb, 5%);
+// 				}
+// 			}
+// 		}
+// 		&:hover {
+// 			cursor: pointer;
+// 		}
+// 	}
+// 	button {
+// 		display: block;
+// 		width: 300px;
+// 		margin: 15px auto;
+// 		&.closeModal {
+// 			width: auto;
+// 			margin: 0;
+// 		}
+// 	}
+// }
+// .closeModal {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// }
 
 footer {
 	text-align: center;
-	margin-top: 75px;
+	margin-top: 0;
+	h3 {
+		font-size: 26pt;
+		width: 800px;
+		margin: 0 auto 50px;
+		line-height: 46px;
+		font-weight: lighter;
+		color: #999;
+	}
 	a {
 		display: inline-block;
-		margin: 0 15px;
+		margin: 50px 15px 0;
 		opacity: 0.8;
 		i {
 			display: block;
@@ -197,6 +217,27 @@ footer {
 			}
 		}
 	}
+	p {
+		margin: 50px 0;
+		font-size: 8pt;
+		letter-spacing: 0.5px;
+		color: #444;
+		vertical-align: middle;
+		a {
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0 0 0 3px;
+			img {
+				width: 35px;
+				height: auto;
+			}
+		}
+	}
+	.msg-alert {
+		p {
+			margin: 10px 0;
+		}
+	}
 }
 
 @media(max-width:1080px) {
@@ -208,12 +249,23 @@ footer {
 		}
 	}
 }
+@media(max-width:800px) {
+	footer {
+		h3 {
+			width: auto;
+			box-sizing: border-box;
+			padding: 0 25px;
+			font-size: 21pt;
+			line-height: 30pt;
+		}
+	}
+}
 @media(max-width:767px) {
 	header {
 		.logo {
 			width: 125px;
 			height: 100px;
-			margin: 0 auto 50px;
+			margin: 50px auto;
 		}
 	}
 	#product {
@@ -221,6 +273,9 @@ footer {
 		img {
 			width: 100%;
 			height: auto;
+			&.print {
+				width: 50%;
+			}
 		}
 	}
 	footer {
