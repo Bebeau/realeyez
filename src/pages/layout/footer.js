@@ -32,7 +32,7 @@ class Footer extends Component{
             />
             <a href="https://facebook.com/realeyezapparel" target="_BLANK" rel="noopener noreferrer"><i className="facebook" /></a>
             <a href="https://instagram.com/realeyezapparel" target="_BLANK" rel="noopener noreferrer"><i className="instagram" /></a>
-          	<p>Built for you by <a href="http://theinitgroup.com" target="_BLANK"><img width="35px" src={init} alt="The INiT Group" /></a></p>
+          	<p>Built for you by <a href="http://theinitgroup.com" target="_BLANK" rel="noopener noreferrer"><img width="35px" src={init} alt="The INiT Group" /></a></p>
           </footer>
        );
     }

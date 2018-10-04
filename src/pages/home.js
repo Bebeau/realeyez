@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-// import Dropdown from 'react-dropdown';
-import StripeCheckout from 'react-stripe-checkout';
 
 import Header from './layout/header';
 import Footer from './layout/footer';
@@ -13,9 +10,9 @@ import lookWhite from '../assets/img/products/lookWhite.jpg';
 import politeJacket from '../assets/img/products/politeJacket.jpg';
 import madeGrey from '../assets/img/products/madeGrey.jpg';
 import snapback from '../assets/img/products/snapback.jpg';
-import dtomBlack from '../assets/img/products/dtomBlack.jpg';
+// import dtomBlack from '../assets/img/products/dtomBlack.jpg';
 import dtomGreen from '../assets/img/products/dtomGreen.jpg';
-import dtomRed from '../assets/img/products/dtomRed.jpg';
+// import dtomRed from '../assets/img/products/dtomRed.jpg';
 import backstabber from '../assets/img/products/backstabber.jpg';
 import dogtags from '../assets/img/products/dogtags.jpg';
 import politeSweats from '../assets/img/products/politeSweats.jpg';
@@ -31,7 +28,7 @@ import preyArt from '../assets/img/prints/prey.jpg';
 const products = [
   {
     id: 'prod_CIp2BBLBuBWOQn',
-    img: [dtomGreen,dtomBlack,dtomRed],
+    img: [dtomGreen],
     title: 'Dont Trap on Me',
     desc: 'A modernization of the Gadsden flag dating back to 1775. Originally given to the Commander and Chief of the Navy before departing on their first mission, and a second to the Congress of our home state of South Carolina. The Gadsden flag was considered one of the first flags of the United States. It was brought about during the America Revolution symbolizing the fight for independence. Since the Revolution, the flag has seen resurgences as a symbol of American patriotism, disagreement with government, or support for civil liberties. This mark is symbolic of a revolt against enslavement by debt, the use of money in coercion and/or extortion upon others. The spear of the stake is piercing through the snake, killing it in the shape of the money sign. A deadly reminder, Dont Trap on Me.',
     price: '200.00',
@@ -128,50 +125,7 @@ const prints = [
   }
 ];
 
-// class Button extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       toggled: false
-//     }
-//   }
-//   handleClick() {
-//     this.setState({
-//       toggled: !this.state.toggled
-//     });
-//   }
-//   render() {
-//     return ( 
-//       <button 
-//         onClick={ this.handleClick.bind(this) } 
-//         className= { this.state.toggled ? "selected" : "" }
-//       >
-//         { this.props.size } 
-//       </button>
-//     )    
-//   }
-// };
-
-// class Thumb extends React.Component {
-//   render() {
-//     return (
-//       <img src={this.props.img} alt="" />
-//     )
-//   }
-// };
-
 class Product extends React.Component {
-  // openModal(){
-  //   <MyModal 
-  //     index={this.props.index}
-  //     img={this.props.img}
-  //     title={this.props.title}
-  //     desc={this.props.desc}
-  //     price={this.props.price}
-  //     size={this.props.size}
-  //     color={this.props.color}
-  //   />
-  // }
   render() {
     return (
       <img src={this.props.img[0]} alt="" />
@@ -186,82 +140,63 @@ class Print extends React.Component {
     )
   }
 };
-
-// class MyModal extends Component{
-//   render(){
-//     const { index, img, title, desc, price, size, color } = this.props;
-//     return (
-//        <section id="productDetails">
-
-//           <div className="half">
-
-//             {this.props.img ?
-//               <div id="size">
-//                 {this.props.img.map((size, index) => (
-//                   <Button
-//                     key={index}
-//                     size={size}
-//                   />
-//                 ))}
-//               </div>
-//             : null}
-            
-//             <h3 className="price">${this.props.price}</h3>
-
-//             {this.props.size ?
-//               <div id="size">
-//                 {this.props.size.map((size, index) => (
-//                   <Button
-//                     key={index}
-//                     size={size}
-//                   />
-//                 ))}
-//               </div>
-//             : null}
-
-//             {this.props.color ?
-//               <Dropdown 
-//                 options={this.props.color} 
-//                 onChange={this._onSelect} 
-//                 value="" 
-//                 placeholder="Select color" 
-//               />
-//             : null}
-
-//             <Checkout
-//               key={index}
-//               amount={this.props.price * 100}
-//             />
-
-//           </div>
-
-//           <div className="half">
-            
-//             <h3>{this.props.title}</h3>
-//             <p id="desc">
-//               {this.props.desc}
-//             </p>
-//             <button className="closeModal">X</button>
-
-//           </div>
-
-//        </section>
-//     );
-//   }
-// };
  
 class Checkout extends React.Component {
-  onToken = (token) => {
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    });
-  }
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       inputValue: '5'
     };
+    this.stripeHandler = window.StripeCheckout.configure({
+      key: 'pk_test_ByoJucUkS7YYjs6OMlbtlA7x',
+      locale: 'auto',
+      token: this.onGetStripeToken.bind(this),
+      name: 'Realeyez',
+      description: 'Support your local scene.',
+      currency: 'usd',
+      image: 'https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/0afafef4-5492-4ff5-a3f8-8961301b3a22.png'
+    });
+  }
+  onGetStripeToken(token, args) {
+    this.setState({stripeToken: token});
+    var donation = {donation: (this.state.inputValue * 100)}
+    var merged = {};
+    Object.assign(merged, token, args, donation);
+    fetch('/charge', {
+      method: 'post',
+      body: JSON.stringify(merged),
+      headers: {'Content-Type': 'application/json'}
+    }).then(response => { 
+      return response.json(); 
+    }).then(data => { 
+      return JSON.stringify(data);
+    }).then(
+      function() {
+        this.setState({
+          isLoading: false
+        });
+      }
+    ).catch(err => {
+      console.log(err);
+    });
+  }
+  onClickPay(e) {
+    e.preventDefault();
+    this.setState({
+      isLoading: true
+    });
+    const onCheckoutOpened = () => {
+      this.setState({
+        isLoading: false
+      })
+    }
+    this.stripeHandler.open({
+      amount: (this.state.inputValue * 100),
+      opened: onCheckoutOpened.bind(this),
+      shippingAddress: true,
+      billingAddress: true,
+      zipCode: true
+    });
   }
   updateInputValue(evt) {
     this.setState({
@@ -269,26 +204,19 @@ class Checkout extends React.Component {
     });
   }
   render() {
-    const { amount } = this.props;
+    var buttonText = this.state.isLoading ? "Please wait ..." : "Donate"
+    var buttonClassName = "Pay-Now" + (this.state.isLoading ? " Pay-Now-Disabled" : "")
+    if(this.state.stripeToken && this.state.isLoading === true) {
+      buttonText = "Processing..."
+      buttonClassName = "Pay-Now Pay-Now-Disabled"
+    }
     return (
       <div id="donate">
         <div id="quote">
-          <h1>Look, I've put so much into creating this shit, but I need your help to make it.</h1>
-          <h2>Donate to the pursuit of printing this product line, and I'll send you one.</h2>
-          <span className="sign">$</span><input type="number" min="5" name="quantity" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="$5" />
-          <StripeCheckout
-            token={this.onToken}
-            stripeKey="pk_test_ByoJucUkS7YYjs6OMlbtlA7x"
-            image="https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/81cbeb07-c1ab-4f6a-8fe9-13f4de7ebb4f.jpg"
-            bitcoin={true}
-            name="Realeyez Apparel"
-            description="Make 'em realize."
-            currency="USD"
-            amount={this.state.inputValue*100}
-            shippingAddress={true}
-          >
-            <button>Donate</button>
-          </StripeCheckout>
+          <h1>Look, I've put so much into creating this, but I need your help to make it.</h1>
+          <h2>Donate to my pursuit of printing this product line, and I'll send you one.</h2>
+          <span className="sign">$</span><input type="number" min="5" name="quantity" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="5" />
+          <button className={buttonClassName} onClick={this.onClickPay.bind(this)}>{buttonText}</button>
         </div>
       </div>
     )
@@ -300,7 +228,7 @@ class App extends Component{
      return (
         <div>
           <Header />
-
+          <Checkout />
           <section id="product">
             {products.map((product, index) => (
               <Product
@@ -320,7 +248,6 @@ class App extends Component{
               />
             ))}
           </section>
-
           <Footer />
         </div>
      );
