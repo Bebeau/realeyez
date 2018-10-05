@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactPixel from 'react-facebook-pixel';
 
 import Header from './layout/header';
 import Footer from './layout/footer';
@@ -24,6 +25,13 @@ import targetArt from '../assets/img/prints/target.jpg';
 import peaceArt from '../assets/img/prints/peace.jpg';
 import dtom2Art from '../assets/img/prints/dtom2.jpg';
 import preyArt from '../assets/img/prints/prey.jpg';
+
+const advancedMatching = {};
+const options = {
+    autoConfig: true,
+    debug: false,
+};
+ReactPixel.init('1964686717087734', advancedMatching, options);
 
 const products = [
   {
@@ -159,19 +167,26 @@ class Checkout extends React.Component {
   }
   onGetStripeToken(token, args) {
     this.setState({stripeToken: token});
+
     var donation = {donation: (this.state.inputValue * 100)}
     var merged = {};
+
     Object.assign(merged, token, args, donation);
+
     fetch('/charge', {
       method: 'post',
       body: JSON.stringify(merged),
       headers: {'Content-Type': 'application/json'}
     }).then(response => { 
-      return response.json(); 
+      return response.json();
     }).then(data => { 
       return JSON.stringify(data);
     }).then(
       function() {
+        ReactPixel.track('Purchase', {
+          value: this.state.inputValue,
+          currency: 'USD',
+        });
         this.setState({
           isLoading: false
         });
@@ -183,7 +198,7 @@ class Checkout extends React.Component {
   onClickPay(e) {
     e.preventDefault();
     
-    fbq('track', 'InitiateCheckout', {
+    ReactPixel.track('InitiateCheckout', {
       value: this.state.inputValue,
       currency: 'USD',
     });
@@ -234,6 +249,7 @@ class App extends Component{
      return (
         <div>
           <Header />
+          <Checkout />
           <section id="product">
             {products.map((product, index) => (
               <Product

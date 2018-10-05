@@ -75,11 +75,6 @@ app.post('/charge', (req, res) => {
 					'LNAME': last
 				}
 			});
-  			fbq('track', 'Lead');
-			fbq('track', 'Purchase', {
-				value: (token.donation % 100),
-				currency: 'USD',
-			});
 	    }
 	)
 	.catch(err => {
