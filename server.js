@@ -28,11 +28,10 @@ app.use((req, res, next) => {
     next();
 });
 
-
 // Serve any static files
 app.use(express.static(path.join(__dirname, 'build')));
 // Handle React routing, return all requests to React app
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
@@ -75,6 +74,11 @@ app.post('/charge', (req, res) => {
 					'FNAME': first,
 					'LNAME': last
 				}
+			});
+  			fbq('track', 'Lead');
+			fbq('track', 'Purchase', {
+				value: (token.donation % 100),
+				currency: 'USD',
 			});
 	    }
 	)

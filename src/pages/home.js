@@ -182,6 +182,12 @@ class Checkout extends React.Component {
   }
   onClickPay(e) {
     e.preventDefault();
+    
+    fbq('track', 'InitiateCheckout', {
+      value: this.state.inputValue,
+      currency: 'USD',
+    });
+
     this.setState({
       isLoading: true
     });
@@ -228,7 +234,6 @@ class App extends Component{
      return (
         <div>
           <Header />
-          <Checkout />
           <section id="product">
             {products.map((product, index) => (
               <Product
