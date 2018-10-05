@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,9 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
-// console.log that your server is up and running
-app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // create a charge
 app.post('/charge', (req, res) => {
@@ -82,3 +79,6 @@ app.post('/charge', (req, res) => {
 		res.status(500).send({error: "Purchase Failed"});
 	});
 });
+
+// console.log that your server is up and running
+app.listen(port, () => console.log(`Listening on port ${port}`));

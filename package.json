@@ -20,7 +20,6 @@
     "stripe": "^5.4.0",
     "webpack": "^3.11.0"
   },
-  "proxy": "http://localhost:5000",
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/assets/sass/*.scss -o src/assets/sass/ --watch --recursive",
