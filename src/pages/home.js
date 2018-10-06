@@ -160,7 +160,7 @@ class Checkout extends React.Component {
       locale: 'auto',
       token: this.onGetStripeToken.bind(this),
       name: 'Realeyez',
-      description: 'Support your local scene.',
+      description: 'Support your local truths.',
       currency: 'usd',
       image: 'https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/0afafef4-5492-4ff5-a3f8-8961301b3a22.png'
     });
