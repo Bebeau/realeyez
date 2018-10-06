@@ -156,7 +156,7 @@ class Checkout extends React.Component {
       inputValue: '5'
     };
     this.stripeHandler = window.StripeCheckout.configure({
-      key: 'pk_test_ByoJucUkS7YYjs6OMlbtlA7x',
+      key: 'pk_live_PPZJHZlhY32Rswx0K6hxprtf',
       locale: 'auto',
       token: this.onGetStripeToken.bind(this),
       name: 'Realeyez',
