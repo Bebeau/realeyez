@@ -148,108 +148,12 @@ class Print extends React.Component {
     )
   }
 };
- 
-class Checkout extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      inputValue: '5'
-    };
-    this.stripeHandler = window.StripeCheckout.configure({
-      key: 'pk_live_PPZJHZlhY32Rswx0K6hxprtf',
-      locale: 'auto',
-      token: this.onGetStripeToken.bind(this),
-      name: 'Realeyez',
-      description: 'Support your local truths.',
-      currency: 'usd',
-      image: 'https://gallery.mailchimp.com/5103cbe30f8ebcec739f1ae34/images/0afafef4-5492-4ff5-a3f8-8961301b3a22.png'
-    });
-  }
-  onGetStripeToken(token, args) {
-    this.setState({stripeToken: token});
-
-    var donation = {donation: (this.state.inputValue * 100)}
-    var merged = {};
-
-    Object.assign(merged, token, args, donation);
-
-    fetch('/charge', {
-      method: 'post',
-      body: JSON.stringify(merged),
-      headers: {'Content-Type': 'application/json'}
-    }).then(response => { 
-      return response.json();
-    }).then(data => { 
-      return JSON.stringify(data);
-    }).then(
-      function() {
-        ReactPixel.track('Purchase', {
-          value: this.state.inputValue,
-          currency: 'USD',
-        });
-        this.setState({
-          isLoading: false
-        });
-      }
-    ).catch(err => {
-      console.log(err);
-    });
-  }
-  onClickPay(e) {
-    e.preventDefault();
-    
-    ReactPixel.track('InitiateCheckout', {
-      value: this.state.inputValue,
-      currency: 'USD',
-    });
-
-    this.setState({
-      isLoading: true
-    });
-    const onCheckoutOpened = () => {
-      this.setState({
-        isLoading: false
-      })
-    }
-    this.stripeHandler.open({
-      amount: (this.state.inputValue * 100),
-      opened: onCheckoutOpened.bind(this),
-      shippingAddress: true,
-      billingAddress: true,
-      zipCode: true
-    });
-  }
-  updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value
-    });
-  }
-  render() {
-    var buttonText = this.state.isLoading ? "Please wait ..." : "Donate"
-    var buttonClassName = "Pay-Now" + (this.state.isLoading ? " Pay-Now-Disabled" : "")
-    if(this.state.stripeToken && this.state.isLoading === true) {
-      buttonText = "Processing..."
-      buttonClassName = "Pay-Now Pay-Now-Disabled"
-    }
-    return (
-      <div id="donate">
-        <div id="quote">
-          <h1>Look, I've put so much into creating this, but I need your help to make it.</h1>
-          <h2>Donate to my pursuit of printing this product line, and I'll send you one.</h2>
-          <span className="sign">$</span><input type="number" min="5" name="quantity" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="5" />
-          <button className={buttonClassName} onClick={this.onClickPay.bind(this)}>{buttonText}</button>
-        </div>
-      </div>
-    )
-  }
-};
 
 class App extends Component{
   render(){
      return (
         <div>
           <Header />
-          <Checkout />
           <section id="product">
             {products.map((product, index) => (
               <Product
