@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-
-import Mailchimp from 'react-mailchimp-form'
-
 import init from '../../assets/img/init.svg';
 
 class Footer extends Component{
