@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
-import ReactPixel from 'react-facebook-pixel';
 
 import Header from './layout/header';
 import Footer from './layout/footer';
 
-import '../assets/sass/style.css';
+import '../assets/css/style.css';
 
 import combatWhite from '../assets/img/products/combatWhite.jpg';
 import lookWhite from '../assets/img/products/lookWhite.jpg';
 import politeJacket from '../assets/img/products/politeJacket.jpg';
-import madeGrey from '../assets/img/products/madeGrey.jpg';
+import pillow from '../assets/img/products/pillow.jpg';
 import snapback from '../assets/img/products/snapback.jpg';
-// import dtomBlack from '../assets/img/products/dtomBlack.jpg';
 import dtomGreen from '../assets/img/products/dtomGreen.jpg';
-// import dtomRed from '../assets/img/products/dtomRed.jpg';
 import backstabber from '../assets/img/products/backstabber.jpg';
 import dogtags from '../assets/img/products/dogtags.jpg';
 import politeSweats from '../assets/img/products/politeSweats.jpg';
 import target from '../assets/img/products/target.jpg';
 
+import brother from '../assets/img/prints/square/1984.jpg';
+import wargames from '../assets/img/prints/square/wargames.jpg';
+import pillage from '../assets/img/prints/square/pillage.jpg';
+import hoaxer from '../assets/img/prints/square/hoaxer.jpg';
+import yoou from '../assets/img/prints/square/yoou.gif';
+import slime from '../assets/img/prints/square/slime.jpg';
+
 import dtom1Art from '../assets/img/prints/dtom1.jpg';
 import lookArt from '../assets/img/prints/look.jpg';
 import targetArt from '../assets/img/prints/target.jpg';
-import peaceArt from '../assets/img/prints/peace.jpg';
+import dummyArt from '../assets/img/prints/dummy.jpg';
 import dtom2Art from '../assets/img/prints/dtom2.jpg';
 import preyArt from '../assets/img/prints/prey.jpg';
-
-const advancedMatching = {};
-const options = {
-    autoConfig: true,
-    debug: false,
-};
-ReactPixel.init('1964686717087734', advancedMatching, options);
 
 const products = [
   {
@@ -60,11 +57,10 @@ const products = [
   },
   {
     id: 'prod_CIp9sqp3UlFn2O',
-    img: [madeGrey],
-    title: 'Made',
+    img: [pillow],
+    title: 'Novelty Weed Throw Pillow',
     desc: 'A graffiti tag taken from the 1992 LA riots paired with Ben Greats single MADE. Futures mistress is Historys whore. Made in America, Land of the free and shit, Trump in the White House, There go our leadership, Love lost its fight now, War come to see the bitch, Sacraficed alive now, Everybody plead the fifth. Never forget.',
-    price: '60.00',
-    size: ['S','M','L','XL','2XL']
+    price: '40.00'
   },
   {
     id: 'prod_CIp82rd2DZAtby',
@@ -113,24 +109,18 @@ const products = [
 ];
 
 const prints = [
-  {
-    art: [dtom1Art]
-  },
-  {
-    art: [targetArt]
-  },
-  {
-    art: [lookArt]
-  },
-  {
-    art: [peaceArt]
-  },
-  {
-    art: [dtom2Art]
-  },
-  {
-    art: [preyArt]
-  }
+  brother,
+  wargames,
+  pillage,
+  hoaxer,
+  yoou,
+  slime,
+  dtom1Art,
+  targetArt,
+  lookArt,
+  dummyArt,
+  dtom2Art,
+  preyArt
 ];
 
 class Product extends React.Component {
@@ -141,42 +131,28 @@ class Product extends React.Component {
   }
 };
 
-class Print extends React.Component {
-  render() {
-    return (
-      <img className="print" src={this.props.art[0]} alt="" />
-    )
-  }
-};
-
-class App extends Component{
-  render(){
-     return (
-        <div>
-          <Header />
-          <section id="product">
-            {products.map((product, index) => (
-              <Product
-                key={index}
-                img={product.img}
-                title={product.title}
-                desc={product.desc}
-                price={product.price}
-                size={product.size}
-                color={product.color}
-              />
-            ))}
-            {prints.map((print, index) => (
-              <Print
-                key={index}
-                art={print.art}
-              />
-            ))}
-          </section>
-          <Footer />
-        </div>
-     );
-  }
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <section id="product">
+        {products.map((product, index) => (
+          (product.title === 'Novelty Weed Throw Pillow') ? (
+            <a className="product link" href="https://smokebreak.live/item/62c0ed4bb1c47abbc6de2fd3" target="_blank">
+              <img key={index} src={product.img[0]} alt={product.title} />
+              <span className="btn">Purchase</span>
+            </a>
+          ) : (
+            <img className="product" key={index} src={product.img[0]} alt={product.title} />
+          )
+        ))}
+        {prints.map((print, index) => (
+          <img key={index} className="print" src={print} alt="" />
+        ))}
+      </section>
+      <Footer />
+    </div>
+ );
 }
 
 export default App;

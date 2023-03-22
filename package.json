@@ -3,30 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "dotenv": "^6.0.0",
-    "express": "^4.16.2",
-    "express-react-views": "^0.10.5",
-    "fs": "0.0.1-security",
-    "mailchimp-api-v3": "^1.12.0",
-    "node-sass-chokidar": "0.0.3",
-    "nodemon": "^1.14.12",
-    "npm": "^6.4.1",
-    "parse-full-name": "^1.2.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-facebook-pixel": "^0.1.1",
-    "react-mailchimp-form": "^1.0.1",
-    "react-scripts": "^1.1.5",
-    "stripe": "^5.4.0",
-    "webpack": "^3.11.0"
+    "concurrently": "^4.1.0",
+    "dotenv": "^16.0.3",
+    "mailchimp-api-v3": "^1.15.0",
+    "nodemon": "^2.0.21",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-mailchimp-form": "^1.0.2",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.38.2",
+    "webpack": "^5.76.2"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass src/assets/sass/*.scss -o src/assets/sass/ --watch --recursive",
-    "start": "node server.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "sass": "sass --watch src/assets/sass:src/assets/css",
+    "server": "node server.js",
+    "dev": "concurrently \"yarn run start\" \"yarn run sass\"",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
-  "devDependencies": {}
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

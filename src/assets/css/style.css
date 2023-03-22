@@ -1,0 +1,124 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+a:focus, button:focus {
+  outline: none;
+}
+a:hover, button:hover {
+  cursor: pointer;
+}
+
+.btn {
+  width: 350px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  border-radius: 0;
+  border: none;
+  line-height: 50px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: black;
+  color: white;
+  font-size: 0.8rem;
+  margin: 0 auto;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+header {
+  margin: 40px auto;
+}
+header .logo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 40px;
+  background: url("../../assets/img/peace.png") no-repeat scroll right/contain;
+}
+header h3 {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  padding: 0 40px;
+  line-height: 28px;
+  font-weight: lighter;
+  color: #999;
+  text-align: center;
+}
+
+#product {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#product img {
+  width: 100%;
+}
+#product .product,
+#product .print {
+  width: 50%;
+}
+#product .product.link,
+#product .print.link {
+  margin: 0 0 -5px;
+  position: relative;
+}
+#product .product.link:hover,
+#product .print.link:hover {
+  cursor: pointer !important;
+}
+#product .product.link:hover .btn,
+#product .print.link:hover .btn {
+  display: block;
+}
+#product .product.link .btn,
+#product .print.link .btn {
+  display: none;
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer {
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.6rem;
+}
+footer a {
+  display: inline-block;
+  transform: translate(0, 4px);
+}
+footer a img {
+  width: 30px;
+}
+
+@media (min-width: 768px) {
+  header {
+    margin: 80px 0;
+  }
+  header h3 {
+    font-size: 2rem;
+    line-height: 40px;
+    margin-bottom: 60px;
+  }
+  #product img.print {
+    width: 33.3%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
