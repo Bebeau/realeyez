@@ -4,20 +4,15 @@
   "private": true,
   "dependencies": {
     "concurrently": "^4.1.0",
-    "dotenv": "^16.0.3",
-    "mailchimp-api-v3": "^1.15.0",
-    "nodemon": "^2.0.21",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-mailchimp-form": "^1.0.2",
     "react-scripts": "^5.0.1",
     "sass": "^1.38.2",
     "webpack": "^5.76.2"
   },
   "scripts": {
     "sass": "sass --watch src/assets/sass:src/assets/css",
-    "server": "node server.js",
     "dev": "concurrently \"yarn run start\" \"yarn run sass\"",
     "start": "react-scripts start",
     "build": "react-scripts build"
